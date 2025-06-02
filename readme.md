@@ -1,4 +1,16 @@
 ### Better autoindex for Nginx!
+
+JUST SHOW ME HOW BETTER: try out [here](https://997779.xyz/share/)
+
+BEFORE:
+
+![](before.png)
+
+AFTER:
+
+![](after.png)
+
+
 TL;DR: How to use
 
 1. add `add_after_body` param under `location`: example:
@@ -23,6 +35,16 @@ server {...
 3. (optional) 
     - you can absolutely put the .autoindex.html anywhere as long as its part of the shared file tree
     - you can also use another font or just no font, whatever
+
+### Functionalities:
+1. dark mode
+2. auto size for columns
+3. fixed default filename truncating
+4. changed icons to white to adapt dark mode
+5. added file sorting (folders priority)
+6. better parent folder navigation
+7. better path breadcrumb
+8. FANCY UI! (round corners, float, animations, shadows, fonts, etc.)
 
 ### Credits
 
