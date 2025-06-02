@@ -39,7 +39,7 @@ server {...
 ### Functionalities:
 1. dark mode
 2. auto size for columns
-3. fixed default filename truncating
+3. fixed default filename truncation
 4. changed icons to white to adapt dark mode
 5. added file sorting (folders priority)
 6. better parent folder navigation
