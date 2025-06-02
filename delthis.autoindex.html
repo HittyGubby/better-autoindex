@@ -12,6 +12,49 @@
     padding: 20px;
   }
 
+  .title-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #ddd;
+    margin: 30px 10px 20px;
+  }
+
+  .go-back {
+    text-decoration: none;
+    background: #444;
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: background 0.3s ease;
+  }
+
+  .go-back:hover {
+    background: #666;
+  }
+
+  .path-display {
+    color: #aaa;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sortable {
+    cursor: pointer;
+  }
+
+  .sortable::after {
+    content: ' ⬍';
+    font-size: 0.8em;
+    opacity: 0.6;
+  }
+
+
   .yq-outer-box {
     display: flex;
     flex-direction: column;
@@ -36,8 +79,8 @@
 
   .yq-row>* {
     flex: 1;
-    white-space: nowrap;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
   }
 
@@ -50,6 +93,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .yq-outer-box a::before {
@@ -68,7 +113,50 @@
     font-size: 0.9rem;
     color: #ccc;
     text-shadow: 0 0 2px #666;
+    flex: 0 0 auto;
+    margin-left: 20px;
   }
+
+  .yq-header {
+    display: flex;
+    align-items: center;
+    background: rgb(56, 56, 56);
+    outline: 1px solid #a7a7a7;
+    height: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .yq-header>* {
+    flex: 1;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #ccc;
+    text-shadow: 0 0 2px #666;
+    flex: 0 0 auto;
+    margin-right: 20px;
+  }
+
+  .yq-row>*:first-child,
+  .yq-header>*:first-child {
+    flex: 1 1 auto;
+    text-align: left;
+    margin-right: auto;
+  }
+
+  .yq-row>.size,
+  .yq-row>.last-modified,
+  .yq-header>.size,
+  .yq-header>.last-modified {
+    flex: 0 0 auto;
+    text-align: right;
+    margin-left: 20px;
+  }
+
 
   @keyframes fadeIn {
     from {
@@ -83,7 +171,7 @@
   }
 
   .yq-outer-box a.file::before {
-    content: url("data:image/svg+xml;utf8,<svg width='15' height='19' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M10 8C8.34 8 7 6.66 7 5V1H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V8h-4zM8 5c0 1.1.9 2 2 2h3.59L8 1.41V5zM3 0h5l7 7v9c0 1.66-1.34 3-3 3H3c-1.66 0-3-1.34-3-3V3c0-1.66 1.34-3 3-3z' fill='black'/></svg>");
+    content: url("data:image/svg+xml;utf8,<svg width='15' height='19' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M10 8C8.34 8 7 6.66 7 5V1H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V8h-4zM8 5c0 1.1.9 2 2 2h3.59L8 1.41V5zM3 0h5l7 7v9c0 1.66-1.34 3-3 3H3c-1.66 0-3-1.34-3-3V3c0-1.66 1.34-3 3-3z' fill='white'/></svg>");
   }
 
   .yq-outer-box a:hover {
@@ -91,15 +179,15 @@
   }
 
   .yq-outer-box a.folder::before {
-    content: url("data:image/svg+xml;utf8,<svg width='20' height='19' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M18.784 3.87a1.565 1.565 0 0 0-.565-.356V2.426c0-.648-.523-1.171-1.15-1.171H8.996L7.908.25A.89.89 0 0 0 7.302 0H2.094C1.445 0 .944.523.944 1.171v2.3c-.21.085-.398.21-.565.356a1.348 1.348 0 0 0-.377 1.004l.398 9.83C.42 15.393 1.048 16 1.8 16h15.583c.753 0 1.36-.586 1.4-1.339l.398-9.83c.021-.313-.125-.69-.397-.962zM1.843 3.41V1.191c0-.146.104-.272.25-.272H7.26l1.234 1.088c.083.042.167.104.293.104h8.282c.125 0 .25.126.25.272V3.41H1.844zm15.54 11.712H1.78a.47.47 0 0 1-.481-.46l-.397-9.83c0-.147.041-.252.125-.356a.504.504 0 0 1 .377-.147H17.78c.125 0 .272.063.377.147.083.083.125.209.125.334l-.418 9.83c-.021.272-.23.482-.481.482z' fill='black'/></svg>");
+    content: url("data:image/svg+xml;utf8,<svg width='20' height='19' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M18.784 3.87a1.565 1.565 0 0 0-.565-.356V2.426c0-.648-.523-1.171-1.15-1.171H8.996L7.908.25A.89.89 0 0 0 7.302 0H2.094C1.445 0 .944.523.944 1.171v2.3c-.21.085-.398.21-.565.356a1.348 1.348 0 0 0-.377 1.004l.398 9.83C.42 15.393 1.048 16 1.8 16h15.583c.753 0 1.36-.586 1.4-1.339l.398-9.83c.021-.313-.125-.69-.397-.962zM1.843 3.41V1.191c0-.146.104-.272.25-.272H7.26l1.234 1.088c.083.042.167.104.293.104h8.282c.125 0 .25.126.25.272V3.41H1.844zm15.54 11.712H1.78a.47.47 0 0 1-.481-.46l-.397-9.83c0-.147.041-.252.125-.356a.504.504 0 0 1 .377-.147H17.78c.125 0 .272.063.377.147.083.083.125.209.125.334l-.418 9.83c-.021.272-.23.482-.481.482z' fill='white'/></svg>");
   }
 
   .yq-outer-box a.lambda::before {
-    content: url("data:image/svg+xml; utf8,<svg width='15' height='19' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M3.5 14.4354H5.31622L7.30541 9.81311H7.43514L8.65315 13.0797C9.05676 14.1643 9.55405 14.5 10.7 14.5C11.0171 14.5 11.291 14.4677 11.5 14.4032V13.1572C11.3847 13.1766 11.2622 13.2024 11.1541 13.2024C10.6351 13.2024 10.3829 13.0281 10.1595 12.4664L8.02613 7.07586C7.21171 5.01646 6.54865 4.5 5.11441 4.5C4.83333 4.5 4.62432 4.53228 4.37207 4.59038V5.83635C4.56667 5.81052 4.66036 5.79761 4.77568 5.79761C5.64775 5.79761 5.9 6.0042 6.4045 7.19852L6.64234 7.77954L3.5 14.4354Z' fill='black'/><rect x='0.5' y='0.5' width='14' height='18' rx='2.5' stroke='black'/></svg>");
+    content: url("data:image/svg+xml; utf8,<svg width='15' height='19' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M3.5 14.4354H5.31622L7.30541 9.81311H7.43514L8.65315 13.0797C9.05676 14.1643 9.55405 14.5 10.7 14.5C11.0171 14.5 11.291 14.4677 11.5 14.4032V13.1572C11.3847 13.1766 11.2622 13.2024 11.1541 13.2024C10.6351 13.2024 10.3829 13.0281 10.1595 12.4664L8.02613 7.07586C7.21171 5.01646 6.54865 4.5 5.11441 4.5C4.83333 4.5 4.62432 4.53228 4.37207 4.59038V5.83635C4.56667 5.81052 4.66036 5.79761 4.77568 5.79761C5.64775 5.79761 5.9 6.0042 6.4045 7.19852L6.64234 7.77954L3.5 14.4354Z' fill='white'/><rect x='0.5' y='0.5' width='14' height='18' rx='2.5' stroke='white'/></svg>");
   }
 
   .yq-outer-box a.img::before {
-    content: url("data:image/svg+xml;utf8,<svg width='16' height='19' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><rect x='6' y='6' width='68' height='68' rx='5' ry='5'/><circle cx='24' cy='24' r='8'/><path d='M73 49L59 34 37 52m16 20L27 42 7 58'/></svg>");
+    content: url("data:image/svg+xml;utf8,<svg width='16' height='19' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><rect x='6' y='6' width='68' height='68' rx='5' ry='5'/><circle cx='24' cy='24' r='8'/><path d='M73 49L59 34 37 52m16 20L27 42 7 58'/></svg>");
   }
 </style>
 <script>
@@ -129,41 +217,133 @@
     return s.toFixed(2) + ' ' + units.at(-1);
   }
 
+  function addHeaderAndSort(outerBox) {
+    const header = document.createElement('div');
+    header.className = 'yq-header';
+
+    const name = document.createElement('div');
+    name.innerText = 'Name';
+    name.dataset.sort = 'name';
+    const size = document.createElement('div');
+    size.innerText = 'Size';
+    size.dataset.sort = 'size';
+    const date = document.createElement('div');
+    date.innerText = 'Last Modified';
+    date.dataset.sort = 'time';
+
+    [name, size, date].forEach(el => {
+      el.classList.add('sortable');
+      el.addEventListener('click', () => sortRows(outerBox, el.dataset.sort, el));
+    });
+
+    header.appendChild(name);
+    header.appendChild(size);
+    header.appendChild(date);
+    outerBox.prepend(header);
+  }
+
+  function sortRows(container, type, clickedHeader) {
+    const rows = Array.from(container.querySelectorAll('.yq-row'));
+    const getText = (row, i) => row.children[i]?.innerText?.trim() ?? '';
+
+    let index = { name: 0, size: 1, time: 2 }[type];
+
+    let asc = !(clickedHeader.dataset.order === 'asc');
+    clickedHeader.dataset.order = asc ? 'asc' : 'desc';
+
+    rows.sort((a, b) => {
+      const isFolder = el => el.querySelector('a')?.classList.contains('folder');
+      const af = isFolder(a), bf = isFolder(b);
+      if (af !== bf) return af ? -1 : 1;
+
+      let x = getText(a, index);
+      let y = getText(b, index);
+      if (type === 'size') {
+        x = parseSize(x); y = parseSize(y);
+      } else if (type === 'time') {
+        x = Date.parse(x); y = Date.parse(y);
+      } else {
+        x = x.toLowerCase(); y = y.toLowerCase();
+      }
+      return asc ? (x > y ? 1 : -1) : (x < y ? 1 : -1);
+    });
+
+    rows.forEach(row => container.appendChild(row));
+  }
+
+  function parseSize(sizeStr) {
+    const units = { B: 1, KB: 1024, MB: 1024 ** 2, GB: 1024 ** 3, TB: 1024 ** 4 };
+    const [num, unit] = sizeStr.split(' ');
+    return parseFloat(num) * (units[unit] || 1);
+  }
+
   function change() {
-    const pre = document.getElementsByTagName('pre')[0];
-    if (pre.className) return;
+    document.querySelectorAll('body hr').forEach(hr => hr.remove());
+    const preElement = document.getElementsByTagName('pre')[0];
+    if (preElement.className) return;
 
-    const outer = document.createElement('div');
-    outer.className = 'yq-outer-box';
+    const outerBox = document.createElement('div');
+    outerBox.classList.add('yq-outer-box');
 
+    const rows = [];
     let row;
-    pre.childNodes.forEach((node) => {
-      if (node.nodeType === 1) {
+    preElement.childNodes.forEach((child) => {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        if (child.text === '../') return;
         row = document.createElement('div');
-        row.className = 'yq-row';
-        const a = document.createElement('a');
-        a.href = node.href;
-        a.innerText = node.textContent.trim();
-        a.className = getClassName(node.href);
-        row.appendChild(a);
-        outer.appendChild(row);
-      } else if (node.nodeType === 3) {
-        const t = node.nodeValue.trim();
-        if (!t) return;
-        const [d, t1, s] = t.split(' ').filter(Boolean);
-        const date = document.createElement('div');
-        date.className = 'last-modified';
-        date.innerText = formatDate(d, t1);
-        const size = document.createElement('div');
-        size.className = 'size';
-        size.innerText = formatSize(s);
-        row.appendChild(date);
-        row.appendChild(size);
+        row.classList.add('yq-row');
+
+        const name = document.createElement('a');
+        name.href = child.href;
+        name.innerText = decodeURIComponent(child.href.split('/').pop()) || child.text.replace('/', '');
+        name.classList.add(getClassName(child.text));
+        row.appendChild(name);
+
+        rows.push(row);
+      } else if (child.nodeType === Node.TEXT_NODE) {
+        const text = child.nodeValue.trim();
+        if (!text) return;
+        const [date, time, size] = text.split(/\s+/).filter(Boolean);
+        const sizeDiv = document.createElement('div');
+        sizeDiv.innerText = formatSize(size);
+        sizeDiv.classList.add('size');
+        row.appendChild(sizeDiv);
+
+        const lastModified = document.createElement('div');
+        lastModified.innerText = formatDate(date, time);
+        lastModified.classList.add('last-modified');
+        row.appendChild(lastModified);
+
       }
     });
 
-    pre.remove();
-    document.body.appendChild(outer);
+    const h1 = document.querySelector('h1');
+    const path = decodeURIComponent(location.pathname)
+      .replace(/^\/|\/$/g, '')
+      .split('/')
+      .filter(Boolean);
+
+    const titleBar = document.createElement('div');
+    titleBar.className = 'title-bar';
+
+    //if (path.length > 0) {
+    const back = document.createElement('a');
+    back.innerText = '← Back';
+    back.href = '../';
+    back.className = 'go-back';
+    titleBar.appendChild(back);
+    //}
+
+    const pathDisplay = document.createElement('div');
+    pathDisplay.className = 'path-display';
+    pathDisplay.innerText = path.length ? 'Home > ' + path.join(' > ') : 'Home';
+    titleBar.appendChild(pathDisplay);
+
+    h1.replaceWith(titleBar);
+    rows.forEach(r => outerBox.appendChild(r));
+    addHeaderAndSort(outerBox);
+    document.body.removeChild(preElement);
+    document.body.appendChild(outerBox);
   }
 
   change();
